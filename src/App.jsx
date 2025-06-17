@@ -1,7 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import Project from "./Project";
+import ToDo from "./ToDo";
 
 function App() {
+  const [project, setProject] = useState([
+    { name: "", isActive: false, toDos: [] },
+  ]);
   return (
     <>
       <h1 class="heading">TO-DO LIST</h1>
