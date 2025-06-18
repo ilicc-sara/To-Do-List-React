@@ -1,10 +1,10 @@
 import React from "react";
 
 function Project(props) {
-  const { inputProject } = props;
+  const { projectName, id } = props;
   return (
     <li className="project-item">
-      {inputProject} <button className="delete-project-btn">X</button>
+      {projectName} <button className="delete-project-btn">X</button>
     </li>
   );
 }

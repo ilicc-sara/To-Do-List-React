@@ -13,7 +13,20 @@ function App() {
 
     setProjects((prev) => [
       ...prev,
-      { name: projectName, isActive: false, toDos: [] },
+      {
+        name: projectName,
+        isActive: false,
+        toDos: [
+          // {
+          //   name: "",
+          //   date: "",
+          //   isDone: false,
+          //   isEditing: false,
+          //   id: crypto.randomUUID(),
+          // },
+        ],
+        id: crypto.randomUUID(),
+      },
     ]);
     setProjectName("");
   }
@@ -47,7 +60,7 @@ function App() {
 
           <ul className="projects-list">
             {projects.map((project, index) => (
-              <Project key={index} inputProject={project.name} />
+              <Project key={index} projectName={project.name} id={project.id} />
             ))}
           </ul>
         </div>
