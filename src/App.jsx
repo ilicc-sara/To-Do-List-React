@@ -4,68 +4,84 @@ import Project from "./Project";
 import ToDo from "./ToDo";
 
 function App() {
-  const [project, setProject] = useState([
-    { name: "", isActive: false, toDos: [] },
-  ]);
+  const [projects, setProjects] = useState([]);
+
+  const [projectName, setProjectName] = useState("");
+
+  function handleSubmitProject(e) {
+    e.preventDefault();
+    console.log(projectName);
+
+    setProjects((prev) => [
+      ...prev,
+      { name: projectName, isActive: false, toDos: [] },
+    ]);
+    console.log(projects);
+  }
   return (
     <>
-      <h1 class="heading">TO-DO LIST</h1>
-      <div class="container">
-        <div class="project-container">
-          <button class="add-project-btn">+ ADD PROJECT</button>
-          <p class="text">Projects 🡫</p>
+      <h1 className="heading">TO-DO LIST</h1>
+      <div className="container">
+        <div className="project-container">
+          <button className="add-project-btn">+ ADD PROJECT</button>
+          <p className="text">Projects 🡫</p>
 
-          <form class="add-project-form">
+          <form className="add-project-form" onSubmit={handleSubmitProject}>
             {/* hidden */}
             <input
-              class="input-project-name"
+              className="input-project-name"
               type="text"
               placeholder="Project Name"
+              onChange={(e) => setProjectName(e.target.value)}
               required
             />
 
-            <div class="project-btns">
+            <div className="project-btns">
               {" "}
-              <button class="confirm-project-btn">ADD</button>{" "}
-              <button type="button" class="cancel-project-btn">
+              <button className="confirm-project-btn">ADD</button>{" "}
+              <button type="button" className="cancel-project-btn">
                 CANCEL
               </button>{" "}
             </div>
           </form>
 
-          <ul class="projects-list"></ul>
+          <ul className="projects-list">
+            {projects.map((project, index) => {
+              <Project key={index} inputProject={project.name} />;
+            })}
+          </ul>
         </div>
 
-        <div class="to-do-container">
-          <button class="add-to-do-btn">+ ADD TO DO</button>
-          <p class="text">To-Do 🡫</p>
+        <div className="to-do-container">
+          <button className="add-to-do-btn">+ ADD TO DO</button>
+          <p className="text">To-Do 🡫</p>
 
-          <form class="add-to-do-form">
+          <form className="add-to-do-form">
             {/* hidden */}
-            <div class="to-do-inputs">
+            <div className="to-do-inputs">
               <label>To-Do:</label>
 
               <input
-                class="input-to-do-name"
+                className="input-to-do-name"
                 type="text"
                 placeholder="To-Do Name"
                 required
               />
               <label>Due:</label>
 
-              <input class="input-to-do-date" type="date" required />
+              <input className="input-to-do-date" type="date" required />
             </div>
 
-            <div class="to-do-btns">
+            <div className="to-do-btns">
               {" "}
-              <button class="confirm-to-do-btn">ADD</button>{" "}
-              <button type="button" class="cancel-to-do-btn">
+              <button className="confirm-to-do-btn">ADD</button>{" "}
+              <button type="button" className="cancel-to-do-btn">
                 CANCEL
               </button>{" "}
             </div>
           </form>
 
-          <ul class="to-do-list"></ul>
+          <ul className="to-do-list"></ul>
         </div>
       </div>
     </>

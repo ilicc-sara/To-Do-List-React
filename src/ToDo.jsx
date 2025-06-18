@@ -4,21 +4,21 @@ function ToDo(props) {
   const { name, date } = props;
   return (
     <li className="to-do-item">
-      <p class="title-text">
+      <p className="title-text">
         {" "}
-        Title: <span class="title"> ${name} </span>{" "}
+        Title: <span className="title"> ${name} </span>{" "}
       </p>
-      <div class="to-do-info">
-        <p class="date-text">
+      <div className="to-do-info">
+        <p className="date-text">
           {" "}
-          Date: <span class="date"> ${date} </span>
+          Date: <span className="date"> ${date} </span>
         </p>
-        <div class="btn-cont">
+        <div className="btn-cont">
           {" "}
-          <button class="edit-to-do-btn">edit</button>{" "}
-          <button class="delete-to-do-btn">delete</button>{" "}
+          <button className="edit-to-do-btn">edit</button>{" "}
+          <button className="delete-to-do-btn">delete</button>{" "}
         </div>
-        <input class="check" type="checkbox" />
+        <input className="check" type="checkbox" />
       </div>
     </li>
   );
