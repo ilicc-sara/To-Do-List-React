@@ -4,7 +4,7 @@ function Project(props) {
   const { inputProject } = props;
   return (
     <li className="project-item">
-      ${inputProject} <button className="delete-project-btn">X</button>
+      {inputProject} <button className="delete-project-btn">X</button>
     </li>
   );
 }

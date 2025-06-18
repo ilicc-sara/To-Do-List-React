@@ -10,13 +10,12 @@ function App() {
 
   function handleSubmitProject(e) {
     e.preventDefault();
-    console.log(projectName);
 
     setProjects((prev) => [
       ...prev,
       { name: projectName, isActive: false, toDos: [] },
     ]);
-    console.log(projects);
+    setProjectName("");
   }
   return (
     <>
@@ -32,6 +31,7 @@ function App() {
               className="input-project-name"
               type="text"
               placeholder="Project Name"
+              value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
               required
             />
@@ -46,9 +46,9 @@ function App() {
           </form>
 
           <ul className="projects-list">
-            {projects.map((project, index) => {
-              <Project key={index} inputProject={project.name} />;
-            })}
+            {projects.map((project, index) => (
+              <Project key={index} inputProject={project.name} />
+            ))}
           </ul>
         </div>
 
