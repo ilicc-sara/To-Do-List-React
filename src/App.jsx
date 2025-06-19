@@ -8,6 +8,9 @@ function App() {
 
   const [projectName, setProjectName] = useState("");
 
+  const [toDoName, setToDoName] = useState("");
+  const [toDoDate, setToDoDate] = useState("");
+
   function handleSubmitProject(e) {
     e.preventDefault();
 
@@ -29,6 +32,15 @@ function App() {
       },
     ]);
     setProjectName("");
+  }
+
+  function handleSubmitToDo(e) {
+    e.preventDefault();
+    console.log(toDoName);
+    console.log(toDoDate);
+
+    setToDoName("");
+    setToDoDate("");
   }
   return (
     <>
@@ -69,7 +81,7 @@ function App() {
           <button className="add-to-do-btn">+ ADD TO DO</button>
           <p className="text">To-Do 🡫</p>
 
-          <form className="add-to-do-form">
+          <form className="add-to-do-form" onSubmit={handleSubmitToDo}>
             {/* hidden */}
             <div className="to-do-inputs">
               <label>To-Do:</label>
@@ -78,11 +90,19 @@ function App() {
                 className="input-to-do-name"
                 type="text"
                 placeholder="To-Do Name"
+                value={toDoName}
+                onChange={(e) => setToDoName(e.target.value)}
                 required
               />
               <label>Due:</label>
 
-              <input className="input-to-do-date" type="date" required />
+              <input
+                className="input-to-do-date"
+                type="date"
+                value={toDoDate}
+                onChange={(e) => setToDoDate(e.target.value)}
+                required
+              />
             </div>
 
             <div className="to-do-btns">
