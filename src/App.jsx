@@ -33,6 +33,7 @@ function App() {
     ]);
     setProjectName("");
   }
+  console.log(projects);
 
   function handleSubmitToDo(e) {
     e.preventDefault();
@@ -42,6 +43,30 @@ function App() {
     setToDoName("");
     setToDoDate("");
   }
+
+  function setActiveProject(id) {
+    // setProjects((prev) => {
+    //   prev.map((project) => {
+    //     if (project.id === id) {
+    //       return { ...project, isActive: true };
+    //     } else {
+    //       return { ...project, isActive: false };
+    //     }
+    //   });
+    // });
+    // console.log(projects);
+
+    const activateProject = projects.map((project) => {
+      if (project.id === id) {
+        return { ...project, isActive: true };
+      } else {
+        return { ...project, isActive: false };
+      }
+    });
+    // console.log(activateProject);
+    setProjects(activateProject);
+  }
+
   return (
     <>
       <h1 className="heading">TO-DO LIST</h1>
@@ -72,7 +97,13 @@ function App() {
 
           <ul className="projects-list">
             {projects.map((project, index) => (
-              <Project key={index} projectName={project.name} id={project.id} />
+              <Project
+                key={index}
+                projectName={project.name}
+                id={project.id}
+                isActive={project.isActive}
+                setActiveProject={setActiveProject}
+              />
             ))}
           </ul>
         </div>
