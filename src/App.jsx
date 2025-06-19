@@ -88,8 +88,10 @@ function App() {
   const activeProject = projects.find((project) => project.isActive === true);
   console.log(activeProject);
 
-  function deleteProject(id) {
-    const filteredProjects = projects.filter((project) => project.id === id);
+  function deleteProject(e, id) {
+    e.stopPropagation();
+
+    const filteredProjects = projects.filter((project) => project.id !== id);
     setProjects(filteredProjects);
     console.log("obrisano");
   }

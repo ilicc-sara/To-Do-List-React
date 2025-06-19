@@ -9,7 +9,10 @@ function Project(props) {
       onClick={() => setActiveProject(id)}
     >
       {name}{" "}
-      <button className="delete-project-btn" onClick={() => deleteProject(id)}>
+      <button
+        className="delete-project-btn"
+        onClick={(e) => deleteProject(e, id)}
+      >
         X
       </button>
     </li>
