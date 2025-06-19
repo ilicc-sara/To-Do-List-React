@@ -37,8 +37,26 @@ function App() {
 
   function handleSubmitToDo(e) {
     e.preventDefault();
-    console.log(toDoName);
-    console.log(toDoDate);
+
+    setProjects((prev) =>
+      prev.map((project) => {
+        if (project.isActive) {
+          return {
+            ...project,
+            toDos: [
+              ...project.toDos,
+              {
+                name: toDoName,
+                date: toDoDate,
+                isDone: false,
+                isEditing: false,
+                id: crypto.randomUUID(),
+              },
+            ],
+          };
+        } else return project;
+      })
+    );
 
     setToDoName("");
     setToDoDate("");
@@ -65,6 +83,15 @@ function App() {
     });
     // console.log(activateProject);
     setProjects(activateProject);
+  }
+
+  const activeProject = projects.find((project) => project.isActive === true);
+  console.log(activeProject);
+
+  function deleteProject(id) {
+    const filteredProjects = projects.filter((project) => project.id === id);
+    setProjects(filteredProjects);
+    console.log("obrisano");
   }
 
   return (
@@ -99,10 +126,9 @@ function App() {
             {projects.map((project, index) => (
               <Project
                 key={index}
-                projectName={project.name}
-                id={project.id}
-                isActive={project.isActive}
+                {...project}
                 setActiveProject={setActiveProject}
+                deleteProject={deleteProject}
               />
             ))}
           </ul>
@@ -145,7 +171,13 @@ function App() {
             </div>
           </form>
 
-          <ul className="to-do-list"></ul>
+          {activeProject && (
+            <ul className="to-do-list">
+              {activeProject.toDos.map((toDo, index) => (
+                <ToDo key={index} {...toDo} />
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </>

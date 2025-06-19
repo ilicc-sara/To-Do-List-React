@@ -1,14 +1,17 @@
 import React from "react";
 
 function Project(props) {
-  const { projectName, id, isActive, setActiveProject } = props;
+  const { name, id, isActive, setActiveProject, deleteProject } = props;
 
   return (
     <li
       className={`project-item ${isActive ? "active" : ""} `}
       onClick={() => setActiveProject(id)}
     >
-      {projectName} <button className="delete-project-btn">X</button>
+      {name}{" "}
+      <button className="delete-project-btn" onClick={() => deleteProject(id)}>
+        X
+      </button>
     </li>
   );
 }
