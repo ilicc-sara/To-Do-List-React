@@ -2,7 +2,10 @@ import React, { useState } from "react";
 
 function ToDo(props) {
   // prettier-ignore
-  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone, setIsEditing } = props;
+  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone, setIsEditing, submitEditToDo } = props;
+
+  const [editName, setEditName] = useState(name);
+  const [editDate, setEditDate] = useState(date);
 
   if (!isEditing) {
     return (
@@ -35,20 +38,31 @@ function ToDo(props) {
     );
   } else {
     return (
-      <form className="form">
+      <form
+        className="form"
+        onSubmit={(e) => submitEditToDo(e, id, editName, editDate)}
+      >
         <p className="title-text">
           {" "}
-          Title: <input
+          Title:{" "}
+          <input
             className="title"
             type="text"
-            value={name}
+            value={editName}
+            onChange={(e) => setEditName(e.target.value)}
             required
           />{" "}
         </p>
         <div className="to-do-info">
           <p className="date-text">
             {" "}
-            Date: <input className="date" type="date" value={date} />{" "}
+            Date:{" "}
+            <input
+              className="date"
+              type="date"
+              value={editDate}
+              onChange={(e) => setEditDate(e.target.value)}
+            />{" "}
           </p>
           <div className="btn-cont">
             {" "}

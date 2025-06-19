@@ -128,7 +128,6 @@ function App() {
     });
 
     setProjects(setIsDoneProjects);
-    console.log(activeProject);
   }
 
   function setIsEditing(id) {
@@ -147,6 +146,26 @@ function App() {
       } else return project;
     });
     setProjects(setEditingProjects);
+  }
+
+  function submitEditToDo(e, id, name, date) {
+    e.preventDefault();
+
+    const setSubmitedProjects = projects.map((project) => {
+      if (project.isActive) {
+        return {
+          ...project,
+          toDos: [
+            ...project.toDos.map((toDo) => {
+              if (toDo.id === id) {
+                return { ...toDo, name: name, date: date, isEditing: false };
+              } else return { ...toDo, isEditing: false };
+            }),
+          ],
+        };
+      } else return project;
+    });
+    setProjects(setSubmitedProjects);
   }
 
   return (
@@ -235,6 +254,7 @@ function App() {
                   deleteToDo={deleteToDo}
                   setIsDone={setIsDone}
                   setIsEditing={setIsEditing}
+                  submitEditToDo={submitEditToDo}
                 />
               ))}
             </ul>
