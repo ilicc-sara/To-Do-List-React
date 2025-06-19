@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Project from "./Project";
 import ToDo from "./ToDo";
+import Button from "./Button";
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -104,7 +105,7 @@ function App() {
             ...project,
             toDos: [...project.toDos.filter((toDo) => toDo.id !== id)],
           };
-        } else project;
+        } else return project;
       })
     );
   }
@@ -174,17 +175,23 @@ function App() {
     document.querySelector(".add-to-do-form").classList.toggle("hidden");
   }
 
+  function cancelProject() {
+    setProjectName("");
+  }
+
+  function cancelToDo() {
+    setToDoName("");
+    setToDoDate("");
+  }
+
   return (
     <>
       <h1 className="heading">TO-DO LIST</h1>
       <div className="container">
         <div className="project-container">
-          <button
-            className="add-project-btn"
-            onClick={() => toggleProjectForm()}
-          >
+          <Button className="add-project-btn" handleClick={toggleProjectForm}>
             + ADD PROJECT
-          </button>
+          </Button>
           <p className="text">Projects 🡫</p>
 
           <form
@@ -201,11 +208,16 @@ function App() {
             />
 
             <div className="project-btns">
-              {" "}
-              <button className="confirm-project-btn">ADD</button>{" "}
-              <button type="button" className="cancel-project-btn">
+              <Button type="submit" className="confirm-project-btn">
+                ADD
+              </Button>
+
+              <Button
+                className="cancel-project-btn"
+                handleClick={cancelProject}
+              >
                 CANCEL
-              </button>{" "}
+              </Button>
             </div>
           </form>
 
@@ -222,9 +234,9 @@ function App() {
         </div>
 
         <div className="to-do-container">
-          <button className="add-to-do-btn" onClick={() => toggleToDoForm()}>
+          <Button className="add-to-do-btn" handleClick={toggleToDoForm}>
             + ADD TO DO
-          </button>
+          </Button>
           <p className="text">To-Do 🡫</p>
 
           <form className="add-to-do-form hidden" onSubmit={handleSubmitToDo}>
@@ -251,11 +263,13 @@ function App() {
             </div>
 
             <div className="to-do-btns">
-              {" "}
-              <button className="confirm-to-do-btn">ADD</button>{" "}
-              <button type="button" className="cancel-to-do-btn">
+              <Button type="submit" className="confirm-to-do-btn">
+                ADD
+              </Button>
+
+              <Button className="cancel-to-do-btn" handleClick={cancelToDo}>
                 CANCEL
-              </button>{" "}
+              </Button>
             </div>
           </form>
 

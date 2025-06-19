@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./Button";
 
 function ToDo(props) {
   // prettier-ignore
@@ -20,13 +21,19 @@ function ToDo(props) {
             Date: <span className="date"> {date} </span>
           </p>
           <div className="btn-cont">
-            {" "}
-            <button className="edit-to-do-btn" onClick={() => setIsEditing(id)}>
+            <Button
+              className="edit-to-do-btn"
+              handleClick={() => setIsEditing(id)}
+            >
               edit
-            </button>{" "}
-            <button className="delete-to-do-btn" onClick={() => deleteToDo(id)}>
+            </Button>
+
+            <Button
+              className="delete-to-do-btn"
+              handleClick={() => deleteToDo(id)}
+            >
               delete
-            </button>{" "}
+            </Button>
           </div>
           <input
             className="check"
@@ -65,13 +72,11 @@ function ToDo(props) {
             />{" "}
           </p>
           <div className="btn-cont">
-            {" "}
-            <button type="submit" className="submit-to-do-btn">
+            <Button type="submit" className="submit-to-do-btn">
               submit
-            </button>{" "}
-            <button type="button" className="delete-to-do-btn">
-              delete
-            </button>{" "}
+            </Button>
+
+            <Button className="delete-to-do-btn">delete</Button>
           </div>
           <input className="check" type="checkbox" />
         </div>

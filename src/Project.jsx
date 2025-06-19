@@ -9,19 +9,13 @@ function Project(props) {
       className={`project-item ${isActive ? "active" : ""} `}
       onClick={() => setActiveProject(id)}
     >
-      {name}{" "}
-      <button
-        className="delete-project-btn"
-        onClick={(e) => deleteProject(e, id)}
-      >
-        X
-      </button>
-      {/* <Button
+      {name}
+      <Button
         className="delete-project-btn"
         handleClick={(e) => deleteProject(e, id)}
       >
         X
-      </Button> */}
+      </Button>
     </li>
   );
 }
