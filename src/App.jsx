@@ -33,11 +33,14 @@ function App() {
     ]);
     setProjectName("");
   }
-  console.log(projects);
+  // console.log(projects);
 
   function handleSubmitToDo(e) {
     e.preventDefault();
 
+    // if (!activeProject) {
+    //   alert("You need to click on some project in order to activate it.");
+    // }
     setProjects((prev) =>
       prev.map((project) => {
         if (project.isActive) {
@@ -81,19 +84,50 @@ function App() {
         return { ...project, isActive: false };
       }
     });
-    // console.log(activateProject);
     setProjects(activateProject);
   }
 
   const activeProject = projects.find((project) => project.isActive === true);
-  console.log(activeProject);
+  // console.log(activeProject);
 
   function deleteProject(e, id) {
     e.stopPropagation();
 
     const filteredProjects = projects.filter((project) => project.id !== id);
     setProjects(filteredProjects);
-    console.log("obrisano");
+  }
+
+  function deleteToDo(id) {
+    setProjects((prev) =>
+      prev.map((project) => {
+        if (project.isActive) {
+          return {
+            ...project,
+            toDos: [...project.toDos.filter((toDo) => toDo.id !== id)],
+          };
+        } else project;
+      })
+    );
+  }
+
+  function setIsDone(id, value) {
+    const setIsDoneProjects = projects.map((project) => {
+      if (project.isActive) {
+        return {
+          ...project,
+          toDos: [
+            ...project.toDos.map((toDo) => {
+              if (toDo.id === id) {
+                return { ...toDo, isDone: value };
+              } else return toDo;
+            }),
+          ],
+        };
+      } else return project;
+    });
+
+    setProjects(setIsDoneProjects);
+    console.log(activeProject);
   }
 
   return (
@@ -176,7 +210,12 @@ function App() {
           {activeProject && (
             <ul className="to-do-list">
               {activeProject.toDos.map((toDo, index) => (
-                <ToDo key={index} {...toDo} />
+                <ToDo
+                  key={index}
+                  {...toDo}
+                  deleteToDo={deleteToDo}
+                  setIsDone={setIsDone}
+                />
               ))}
             </ul>
           )}

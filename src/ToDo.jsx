@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ToDo(props) {
-  const { name, date, isDone, isEditing, id } = props;
+  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone } = props;
+
   return (
     <li className="to-do-item">
       <p className="title-text">
@@ -16,9 +17,15 @@ function ToDo(props) {
         <div className="btn-cont">
           {" "}
           <button className="edit-to-do-btn">edit</button>{" "}
-          <button className="delete-to-do-btn">delete</button>{" "}
+          <button className="delete-to-do-btn" onClick={() => deleteToDo(id)}>
+            delete
+          </button>{" "}
         </div>
-        <input className="check" type="checkbox" />
+        <input
+          className="check"
+          type="checkbox"
+          onChange={(e) => setIsDone(id, e.target.checked)}
+        />
       </div>
     </li>
   );
