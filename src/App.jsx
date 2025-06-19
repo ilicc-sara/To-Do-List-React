@@ -140,7 +140,7 @@ function App() {
             ...project.toDos.map((toDo) => {
               if (toDo.id === id) {
                 return { ...toDo, isEditing: true };
-              } else return toDo;
+              } else return { ...toDo, isEditing: false };
             }),
           ],
         };
