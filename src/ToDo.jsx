@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 function ToDo(props) {
-  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone } = props;
+  // prettier-ignore
+  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone, setIsEditing } = props;
 
   return (
     <li className="to-do-item">
@@ -16,7 +17,9 @@ function ToDo(props) {
         </p>
         <div className="btn-cont">
           {" "}
-          <button className="edit-to-do-btn">edit</button>{" "}
+          <button className="edit-to-do-btn" onClick={() => setIsEditing(id)}>
+            edit
+          </button>{" "}
           <button className="delete-to-do-btn" onClick={() => deleteToDo(id)}>
             delete
           </button>{" "}

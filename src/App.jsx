@@ -33,36 +33,37 @@ function App() {
     ]);
     setProjectName("");
   }
-  // console.log(projects);
+  console.log(projects);
 
   function handleSubmitToDo(e) {
     e.preventDefault();
 
-    // if (!activeProject) {
-    //   alert("You need to click on some project in order to activate it.");
-    // }
-    setProjects((prev) =>
-      prev.map((project) => {
-        if (project.isActive) {
-          return {
-            ...project,
-            toDos: [
-              ...project.toDos,
-              {
-                name: toDoName,
-                date: toDoDate,
-                isDone: false,
-                isEditing: false,
-                id: crypto.randomUUID(),
-              },
-            ],
-          };
-        } else return project;
-      })
-    );
+    if (!activeProject) {
+      alert("You need to click on some project in order to activate it.");
+    } else {
+      setProjects((prev) =>
+        prev.map((project) => {
+          if (project.isActive) {
+            return {
+              ...project,
+              toDos: [
+                ...project.toDos,
+                {
+                  name: toDoName,
+                  date: toDoDate,
+                  isDone: false,
+                  isEditing: false,
+                  id: crypto.randomUUID(),
+                },
+              ],
+            };
+          } else return project;
+        })
+      );
 
-    setToDoName("");
-    setToDoDate("");
+      setToDoName("");
+      setToDoDate("");
+    }
   }
 
   function setActiveProject(id) {
@@ -128,6 +129,24 @@ function App() {
 
     setProjects(setIsDoneProjects);
     console.log(activeProject);
+  }
+
+  function setIsEditing(id) {
+    const setEditingProjects = projects.map((project) => {
+      if (project.isActive) {
+        return {
+          ...project,
+          toDos: [
+            ...project.toDos.map((toDo) => {
+              if (toDo.id === id) {
+                return { ...toDo, isEditing: true };
+              } else return toDo;
+            }),
+          ],
+        };
+      } else return project;
+    });
+    setProjects(setEditingProjects);
   }
 
   return (
@@ -215,6 +234,7 @@ function App() {
                   {...toDo}
                   deleteToDo={deleteToDo}
                   setIsDone={setIsDone}
+                  setIsEditing={setIsEditing}
                 />
               ))}
             </ul>
