@@ -76,7 +76,6 @@ function App() {
     //     }
     //   });
     // });
-    // console.log(projects);
 
     const activateProject = projects.map((project) => {
       if (project.id === id) {
@@ -89,7 +88,6 @@ function App() {
   }
 
   const activeProject = projects.find((project) => project.isActive === true);
-  // console.log(activeProject);
 
   function deleteProject(e, id) {
     e.stopPropagation();
@@ -168,16 +166,31 @@ function App() {
     setProjects(setSubmitedProjects);
   }
 
+  function toggleProjectForm() {
+    document.querySelector(".add-project-form").classList.toggle("hidden");
+  }
+
+  function toggleToDoForm() {
+    document.querySelector(".add-to-do-form").classList.toggle("hidden");
+  }
+
   return (
     <>
       <h1 className="heading">TO-DO LIST</h1>
       <div className="container">
         <div className="project-container">
-          <button className="add-project-btn">+ ADD PROJECT</button>
+          <button
+            className="add-project-btn"
+            onClick={() => toggleProjectForm()}
+          >
+            + ADD PROJECT
+          </button>
           <p className="text">Projects 🡫</p>
 
-          <form className="add-project-form" onSubmit={handleSubmitProject}>
-            {/* hidden */}
+          <form
+            className="add-project-form hidden"
+            onSubmit={handleSubmitProject}
+          >
             <input
               className="input-project-name"
               type="text"
@@ -209,11 +222,12 @@ function App() {
         </div>
 
         <div className="to-do-container">
-          <button className="add-to-do-btn">+ ADD TO DO</button>
+          <button className="add-to-do-btn" onClick={() => toggleToDoForm()}>
+            + ADD TO DO
+          </button>
           <p className="text">To-Do 🡫</p>
 
-          <form className="add-to-do-form" onSubmit={handleSubmitToDo}>
-            {/* hidden */}
+          <form className="add-to-do-form hidden" onSubmit={handleSubmitToDo}>
             <div className="to-do-inputs">
               <label>To-Do:</label>
 

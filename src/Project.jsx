@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 function Project(props) {
   const { name, id, isActive, setActiveProject, deleteProject } = props;
@@ -15,6 +16,12 @@ function Project(props) {
       >
         X
       </button>
+      {/* <Button
+        className="delete-project-btn"
+        handleClick={(e) => deleteProject(e, id)}
+      >
+        X
+      </Button> */}
     </li>
   );
 }
