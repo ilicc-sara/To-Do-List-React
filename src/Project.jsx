@@ -11,7 +11,7 @@ function Project(props) {
     >
       {name}
       <Button
-        className="delete-project-btn"
+        variation="deleteProject"
         handleClick={(e) => deleteProject(e, id)}
       >
         X

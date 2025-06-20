@@ -12,26 +12,18 @@ function ToDo(props) {
     return (
       <li className="to-do-item">
         <p className="title-text">
-          {" "}
           Title: <span className="title"> {name} </span>{" "}
         </p>
         <div className="to-do-info">
           <p className="date-text">
-            {" "}
             Date: <span className="date"> {date} </span>
           </p>
           <div className="btn-cont">
-            <Button
-              className="edit-to-do-btn"
-              handleClick={() => setIsEditing(id)}
-            >
+            <Button variation="editToDo" handleClick={() => setIsEditing(id)}>
               edit
             </Button>
 
-            <Button
-              className="delete-to-do-btn"
-              handleClick={() => deleteToDo(id)}
-            >
+            <Button variation="deleteToDo" handleClick={() => deleteToDo(id)}>
               delete
             </Button>
           </div>
@@ -50,33 +42,31 @@ function ToDo(props) {
         onSubmit={(e) => submitEditToDo(e, id, editName, editDate)}
       >
         <p className="title-text">
-          {" "}
-          Title:{" "}
+          Title:
           <input
             className="title"
             type="text"
             value={editName}
             onChange={(e) => setEditName(e.target.value)}
             required
-          />{" "}
+          />
         </p>
         <div className="to-do-info">
           <p className="date-text">
-            {" "}
-            Date:{" "}
+            Date:
             <input
               className="date"
               type="date"
               value={editDate}
               onChange={(e) => setEditDate(e.target.value)}
-            />{" "}
+            />
           </p>
           <div className="btn-cont">
-            <Button type="submit" className="submit-to-do-btn">
+            <Button type="submit" variation="submitToDo">
               submit
             </Button>
 
-            <Button className="delete-to-do-btn">delete</Button>
+            <Button variation="deleteToDo">delete</Button>
           </div>
           <input className="check" type="checkbox" />
         </div>

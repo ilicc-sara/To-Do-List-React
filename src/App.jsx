@@ -3,6 +3,7 @@ import "./App.css";
 import Project from "./Project";
 import ToDo from "./ToDo";
 import Button from "./Button";
+import Input from "./Input";
 
 function App() {
   const [projects, setProjects] = useState([]);
@@ -189,7 +190,7 @@ function App() {
       <h1 className="heading">TO-DO LIST</h1>
       <div className="container">
         <div className="project-container">
-          <Button className="add-project-btn" handleClick={toggleProjectForm}>
+          <Button variation="addProject" handleClick={toggleProjectForm}>
             + ADD PROJECT
           </Button>
           <p className="text">Projects 🡫</p>
@@ -208,14 +209,11 @@ function App() {
             />
 
             <div className="project-btns">
-              <Button type="submit" className="confirm-project-btn">
+              <Button type="submit" variation="confirmProject">
                 ADD
               </Button>
 
-              <Button
-                className="cancel-project-btn"
-                handleClick={cancelProject}
-              >
+              <Button variation="cancelProject" handleClick={cancelProject}>
                 CANCEL
               </Button>
             </div>
@@ -234,7 +232,7 @@ function App() {
         </div>
 
         <div className="to-do-container">
-          <Button className="add-to-do-btn" handleClick={toggleToDoForm}>
+          <Button variation="addToDo" handleClick={toggleToDoForm}>
             + ADD TO DO
           </Button>
           <p className="text">To-Do 🡫</p>
@@ -263,11 +261,11 @@ function App() {
             </div>
 
             <div className="to-do-btns">
-              <Button type="submit" className="confirm-to-do-btn">
+              <Button type="submit" variation="confirmToDo">
                 ADD
               </Button>
 
-              <Button className="cancel-to-do-btn" handleClick={cancelToDo}>
+              <Button variation="cancelToDo" handleClick={cancelToDo}>
                 CANCEL
               </Button>
             </div>
