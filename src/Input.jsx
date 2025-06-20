@@ -1,12 +1,13 @@
 import React from "react";
 
 function Input(props) {
-  const { className, type, placeholder, value, handleOnChange } = props;
+  const { variation, type, children, value, handleOnChange } = props;
+
   return (
     <input
-      className={className}
-      type={type}
-      placeholder={placeholder}
+      className={`input-${variation}`}
+      type={`${type ? type : "text"}`}
+      placeholder={children}
       value={value}
       onChange={handleOnChange}
       required

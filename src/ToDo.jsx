@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
 
 function ToDo(props) {
   // prettier-ignore
-  const { name, date, isDone, isEditing, id, deleteToDo, setIsDone, setIsEditing, submitEditToDo } = props;
+  const { name, date, isEditing, id, deleteToDo, setIsDone, setIsEditing, submitEditToDo } = props;
 
   const [editName, setEditName] = useState(name);
   const [editDate, setEditDate] = useState(date);

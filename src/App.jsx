@@ -177,14 +177,13 @@ function App() {
 
           {showProjectForm && (
             <form className="add-project-form" onSubmit={handleSubmitProject}>
-              <input
-                className="input-project-name"
-                type="text"
-                placeholder="Project Name"
+              <Input
+                variation="project-name"
                 value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-                required
-              />
+                handleOnChange={(e) => setProjectName(e.target.value)}
+              >
+                Project Name
+              </Input>
 
               <div className="project-btns">
                 <Button type="submit" variation="confirmProject">
@@ -223,24 +222,23 @@ function App() {
             <form className="add-to-do-form" onSubmit={handleSubmitToDo}>
               <div className="to-do-inputs">
                 <label>To-Do:</label>
-
-                <input
-                  className="input-to-do-name"
-                  type="text"
-                  placeholder="To-Do Name"
+                <Input
+                  variation="to-do-name"
                   value={toDoName}
-                  onChange={(e) => setToDoName(e.target.value)}
-                  required
-                />
+                  handleOnChange={(e) => setToDoName(e.target.value)}
+                >
+                  To-Do Name
+                </Input>
                 <label>Due:</label>
 
-                <input
-                  className="input-to-do-date"
+                <Input
+                  variation="to-do-date"
                   type="date"
                   value={toDoDate}
-                  onChange={(e) => setToDoDate(e.target.value)}
-                  required
-                />
+                  handleOnChange={(e) => setToDoDate(e.target.value)}
+                >
+                  To-Do Name
+                </Input>
               </div>
 
               <div className="to-do-btns">
