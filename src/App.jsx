@@ -13,6 +13,9 @@ function App() {
   const [toDoName, setToDoName] = useState("");
   const [toDoDate, setToDoDate] = useState("");
 
+  const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showToDoForm, setShowToDoForm] = useState(false);
+
   function handleSubmitProject(e) {
     e.preventDefault();
 
@@ -21,15 +24,7 @@ function App() {
       {
         name: projectName,
         isActive: false,
-        toDos: [
-          // {
-          //   name: "",
-          //   date: "",
-          //   isDone: false,
-          //   isEditing: false,
-          //   id: crypto.randomUUID(),
-          // },
-        ],
+        toDos: [],
         id: crypto.randomUUID(),
       },
     ]);
@@ -69,16 +64,6 @@ function App() {
   }
 
   function setActiveProject(id) {
-    // setProjects((prev) => {
-    //   prev.map((project) => {
-    //     if (project.id === id) {
-    //       return { ...project, isActive: true };
-    //     } else {
-    //       return { ...project, isActive: false };
-    //     }
-    //   });
-    // });
-
     const activateProject = projects.map((project) => {
       if (project.id === id) {
         return { ...project, isActive: true };
@@ -168,14 +153,6 @@ function App() {
     setProjects(setSubmitedProjects);
   }
 
-  function toggleProjectForm() {
-    document.querySelector(".add-project-form").classList.toggle("hidden");
-  }
-
-  function toggleToDoForm() {
-    document.querySelector(".add-to-do-form").classList.toggle("hidden");
-  }
-
   function cancelProject() {
     setProjectName("");
   }
@@ -190,34 +167,36 @@ function App() {
       <h1 className="heading">TO-DO LIST</h1>
       <div className="container">
         <div className="project-container">
-          <Button variation="addProject" handleClick={toggleProjectForm}>
+          <Button
+            variation="addProject"
+            handleClick={() => setShowProjectForm(!showProjectForm)}
+          >
             + ADD PROJECT
           </Button>
           <p className="text">Projects 🡫</p>
 
-          <form
-            className="add-project-form hidden"
-            onSubmit={handleSubmitProject}
-          >
-            <input
-              className="input-project-name"
-              type="text"
-              placeholder="Project Name"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-              required
-            />
+          {showProjectForm && (
+            <form className="add-project-form" onSubmit={handleSubmitProject}>
+              <input
+                className="input-project-name"
+                type="text"
+                placeholder="Project Name"
+                value={projectName}
+                onChange={(e) => setProjectName(e.target.value)}
+                required
+              />
 
-            <div className="project-btns">
-              <Button type="submit" variation="confirmProject">
-                ADD
-              </Button>
+              <div className="project-btns">
+                <Button type="submit" variation="confirmProject">
+                  ADD
+                </Button>
 
-              <Button variation="cancelProject" handleClick={cancelProject}>
-                CANCEL
-              </Button>
-            </div>
-          </form>
+                <Button variation="cancelProject" handleClick={cancelProject}>
+                  CANCEL
+                </Button>
+              </div>
+            </form>
+          )}
 
           <ul className="projects-list">
             {projects.map((project, index) => (
@@ -232,44 +211,49 @@ function App() {
         </div>
 
         <div className="to-do-container">
-          <Button variation="addToDo" handleClick={toggleToDoForm}>
+          <Button
+            variation="addToDo"
+            handleClick={() => setShowToDoForm(!showToDoForm)}
+          >
             + ADD TO DO
           </Button>
           <p className="text">To-Do 🡫</p>
 
-          <form className="add-to-do-form hidden" onSubmit={handleSubmitToDo}>
-            <div className="to-do-inputs">
-              <label>To-Do:</label>
+          {showToDoForm && (
+            <form className="add-to-do-form" onSubmit={handleSubmitToDo}>
+              <div className="to-do-inputs">
+                <label>To-Do:</label>
 
-              <input
-                className="input-to-do-name"
-                type="text"
-                placeholder="To-Do Name"
-                value={toDoName}
-                onChange={(e) => setToDoName(e.target.value)}
-                required
-              />
-              <label>Due:</label>
+                <input
+                  className="input-to-do-name"
+                  type="text"
+                  placeholder="To-Do Name"
+                  value={toDoName}
+                  onChange={(e) => setToDoName(e.target.value)}
+                  required
+                />
+                <label>Due:</label>
 
-              <input
-                className="input-to-do-date"
-                type="date"
-                value={toDoDate}
-                onChange={(e) => setToDoDate(e.target.value)}
-                required
-              />
-            </div>
+                <input
+                  className="input-to-do-date"
+                  type="date"
+                  value={toDoDate}
+                  onChange={(e) => setToDoDate(e.target.value)}
+                  required
+                />
+              </div>
 
-            <div className="to-do-btns">
-              <Button type="submit" variation="confirmToDo">
-                ADD
-              </Button>
+              <div className="to-do-btns">
+                <Button type="submit" variation="confirmToDo">
+                  ADD
+                </Button>
 
-              <Button variation="cancelToDo" handleClick={cancelToDo}>
-                CANCEL
-              </Button>
-            </div>
-          </form>
+                <Button variation="cancelToDo" handleClick={cancelToDo}>
+                  CANCEL
+                </Button>
+              </div>
+            </form>
+          )}
 
           {activeProject && (
             <ul className="to-do-list">
