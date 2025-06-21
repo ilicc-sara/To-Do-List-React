@@ -18,6 +18,12 @@ function Input(props) {
   if (variation === "checkbox") {
     baseClassName = "check";
   }
+  if (variation === "to-do-name-edit") {
+    baseClassName = "title";
+  }
+  if (variation === "to-do-date-edit") {
+    baseClassName = "date";
+  }
 
   return (
     <input

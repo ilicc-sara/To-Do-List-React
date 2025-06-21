@@ -45,23 +45,21 @@ function ToDo(props) {
       >
         <p className="title-text">
           Title:
-          <input
-            className="title"
-            type="text"
+          <Input
+            variation="to-do-name-edit"
             value={editName}
-            onChange={(e) => setEditName(e.target.value)}
-            required
-          />
+            handleOnChange={(e) => setEditName(e.target.value)}
+          ></Input>
         </p>
         <div className="to-do-info">
           <p className="date-text">
             Date:
-            <input
-              className="date"
+            <Input
+              variation="to-do-date-edit"
               type="date"
               value={editDate}
-              onChange={(e) => setEditDate(e.target.value)}
-            />
+              handleOnChange={(e) => setEditDate(e.target.value)}
+            ></Input>
           </p>
           <div className="btn-cont">
             <Button type="submit" variation="submitToDo">

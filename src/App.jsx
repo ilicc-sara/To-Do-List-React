@@ -236,9 +236,7 @@ function App() {
                   type="date"
                   value={toDoDate}
                   handleOnChange={(e) => setToDoDate(e.target.value)}
-                >
-                  To-Do Name
-                </Input>
+                ></Input>
               </div>
 
               <div className="to-do-btns">
