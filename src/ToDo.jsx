@@ -28,11 +28,12 @@ function ToDo(props) {
               delete
             </Button>
           </div>
-          <input
-            className="check"
+
+          <Input
             type="checkbox"
-            onChange={(e) => setIsDone(id, e.target.checked)}
-          />
+            variation="checkbox"
+            handleOnChange={(e) => setIsDone(id, e.target.checked)}
+          ></Input>
         </div>
       </li>
     );
